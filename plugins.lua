@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 local plugins = {
   {
@@ -17,8 +17,12 @@ local plugins = {
     end,
   },
   {
+    "nvim-tree/nvim-tree.lua",
+    lazy = false,
+  },
+  {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -35,7 +39,33 @@ local plugins = {
   {
     "jakemason/ouroboros",
     ft = { "c", "cpp" },
-    dependencies = "nvim-lua/plenary.nvim"
+    dependencies = "nvim-lua/plenary.nvim",
+  },
+  {
+    "romgrk/barbar.nvim",
+    lazy = false,
+    dependencies = {
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    config = function()
+      require("barbar").setup {
+        animation = true,
+        auto_hide = false,
+        tabpages = true,
+        clickable = true,
+        highlight_inactive_file_icons = false,
+        highlight_visible = true,
+      }
+    end,
+  },
+  {
+    "VonHeikemen/searchbox.nvim",
+    lazy = false,
+    dependencies = "MunifTanjim/nui.nvim",
   },
   {
     "stevearc/dressing.nvim",
@@ -46,16 +76,16 @@ local plugins = {
     dependencies = "nvim-tree/nvim-web-devicons",
     lazy = false,
     opts = overrides.lualine,
-    config = function (_, opts)
-      require('lualine').setup(opts)
-    end
+    config = function(_, opts)
+      require("lualine").setup(opts)
+    end,
   },
   {
     "phaazon/hop.nvim",
     lazy = false,
-    config = function ()
-      require'hop'.setup { keys = 'azertyuiopsdfklmwxcvbn' }
-    end
+    config = function()
+      require("hop").setup { keys = "azertyuiopsdfklmwxcvbn" }
+    end,
   },
   {
     dir = "~/Developer/runner/",
@@ -78,7 +108,7 @@ local plugins = {
   {
     "NvChad/nvterm",
     enabled = false,
-  }
+  },
 }
 
 return plugins

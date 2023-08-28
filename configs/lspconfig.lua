@@ -3,7 +3,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
-local servers = { 
+local servers = {
   --"clangd",
   "cmake",
   "rust_analyzer",
@@ -14,6 +14,7 @@ local servers = {
   "taplo",
   "wgsl_analyzer",
   "lua_ls",
+  "glslls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -23,11 +24,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.clangd.setup({
+lspconfig.clangd.setup {
   cmd = {
     "clangd",
     "--offset-encoding=utf-16", -- To match null-ls
-    --  With this, you can configure server with 
+    --  With this, you can configure server with
     --    - .clangd files
     --    - global clangd/config.yaml files
     --  Read the `--enable-config` option in `clangd --help` for more information
@@ -37,4 +38,4 @@ lspconfig.clangd.setup({
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
-})
+}

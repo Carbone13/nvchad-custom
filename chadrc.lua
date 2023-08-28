@@ -16,9 +16,12 @@ M.ui = {
 
   ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
-    overriden_modules = function (modules)
+    overriden_modules = function(modules)
       modules = {}
-    end
+    end,
+  },
+  tabufline = {
+    enabled = false,
   },
 }
 
